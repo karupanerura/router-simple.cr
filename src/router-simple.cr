@@ -22,16 +22,15 @@ module Router::Simple
    end
 
    def match(path : String, &block) : Bool
-     matched = false
      @routes.each{|route|
        match = route.match(path)
        if match != nil
          result = Result(T).new(match.not_nil!, route)
-         matched = true
          yield result
+         return true
        end
      }
-     matched
+     return false
    end
  end
 end
