@@ -28,12 +28,12 @@ dispatcher.add("/users/:user_id", {
 })
 
 dispatcher.match("/") {|result|
-  p result.route.meta.controller # => "Root"
+  p result.route.meta[:controller] # => "Root"
 }
 
 dispatcher.match("/users/1") {|result|
-  p result.route.meta.controller # => "Users"
-  p result.match["user_id"]      # => "1"
+  p result.route.meta[:controller] # => "Users"
+  p result.match["user_id"]        # => "1"
 }
 ```
 
