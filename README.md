@@ -1,6 +1,6 @@
 # router-simple
 
-TODO: Write a description here for library
+simple path router inspired by [Router::Simple](https://metacpan.org/pod/Router::Simple).
 
 ## Installation
 
@@ -8,7 +8,7 @@ Add it to `Projectfile`
 
 ```crystal
 deps do
-  github "[your-github-name]/router-simple"
+  github "karupanerura/router-simple"
 end
 ```
 
@@ -16,9 +16,26 @@ end
 
 ```crystal
 require "router-simple"
-```
 
-TODO: Write usage here for library
+dispatcher = Router::Simple::Dispatcher(Hash(Symbol, String)).new()
+dispatcher.add("/", {
+  :controller => "Root",
+  :action     => "index",
+})
+dispatcher.add("/users/:user_id", {
+  :controller => "Users",
+  :action     => "fetch_by_id",
+})
+
+dispatcher.match("/") {|result|
+  p result.route.meta.controller # => "Root"
+}
+
+dispatcher.match("/users/1") {|result|
+  p result.route.meta.controller # => "Users"
+  p result.match["user_id"]      # => "1"
+}
+```
 
 ## Development
 
@@ -26,7 +43,7 @@ TODO: Write instructions for development
 
 ## Contributing
 
-1. Fork it ( https://github.com/[your-github-name]/router-simple/fork )
+1. Fork it ( https://github.com/karupanerura/router-simple/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -34,4 +51,4 @@ TODO: Write instructions for development
 
 ## Contributors
 
-- [your-github-name](https://github.com/[your-github-name]) karupanerura - creator, maintainer
+- karupanerura(https://github.com/karupanerura) karupanerura - creator, maintainer
