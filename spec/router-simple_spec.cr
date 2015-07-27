@@ -46,29 +46,29 @@ describe Router::Simple::Result(String) do
   end
 end
 
-describe Router::Simple::Routes(String) do
+describe Router::Simple::Dispatcher(String) do
   it "can add rotue." do
-    routes = Router::Simple::Routes(String).new()
-    routes.add("/", "meta")
+    dispatcher = Router::Simple::Dispatcher(String).new()
+    dispatcher.add("/", "meta")
   end
 
   it "can match rotue." do
-    routes = Router::Simple::Routes(String).new()
-    routes.add("/",         "root")
-    routes.add("/foo",      "foo")
-    routes.add("/foo/:bar", "foo-bar")
+    dispatcher = Router::Simple::Dispatcher(String).new()
+    dispatcher.add("/",         "root")
+    dispatcher.add("/foo",      "foo")
+    dispatcher.add("/foo/:bar", "foo-bar")
 
-    routes.match("/") {|result|
+    dispatcher.match("/") {|result|
       result.route.meta.should eq("root")
     }.should be_true
-    routes.match("/foo") {|result|
+    dispatcher.match("/foo") {|result|
       result.route.meta.should eq("foo")
     }.should be_true
-    routes.match("/foo/barbar") {|result|
+    dispatcher.match("/foo/barbar") {|result|
       result.route.meta.should eq("foo-bar")
       result.match["bar"].should eq("barbar")
     }.should be_true
-    routes.match("/bar") {|result|
+    dispatcher.match("/bar") {|result|
       raise "no reach here"
     }.should be_false
   end

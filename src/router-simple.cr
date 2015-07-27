@@ -1,7 +1,7 @@
 require "./router-simple/*"
 
 module Router::Simple
- class Routes(T)
+ class Dispatcher(T)
    @routes :: Array(Route(T))
 
    def initialize()
