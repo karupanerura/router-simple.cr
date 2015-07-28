@@ -8,7 +8,7 @@ Add it to `Projectfile`
 
 ```crystal
 deps do
-  github "karupanerura/router-simple"
+  github "karupanerura/router-simple.cr"
 end
 ```
 
@@ -43,7 +43,7 @@ TODO: Write instructions for development
 
 ## Contributing
 
-1. Fork it ( https://github.com/karupanerura/router-simple/fork )
+1. Fork it ( https://github.com/karupanerura/router-simple.cr/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
