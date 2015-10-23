@@ -5,7 +5,7 @@ module Router::Simple
     def initialize(@spec : PathSpec, @meta : T)
     end
 
-    def match(path : String) : MatchData?
+    def match(path : String) : Regex::MatchData?
       @spec.match(path)
     end
 

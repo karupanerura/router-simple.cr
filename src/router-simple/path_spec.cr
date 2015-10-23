@@ -10,7 +10,7 @@ module Router::Simple
       regex_src = regex_src.gsub(/:([A-Za-z0-9_]+)/) {|str, match| "\\E(?<#{Regex.escape(match[1])}>[^/]+)\\Q" }
       regex_src = regex_src.gsub(/\{((?:\{[0-9,]+\}|[^{}]+)+)\}/) {|str, match|
         pairs = match[1].split(':')
-        if pairs.count == 2
+        if pairs.size == 2
           name    = pairs[0]
           pattern = pairs[1]
           "\\E(?<#{Regex.escape(name)}>#{pattern})\\Q"
@@ -21,9 +21,8 @@ module Router::Simple
       @regex = Regex.new("^\\Q" + regex_src + "\\E$")
     end
 
-    def match(path : String) : MatchData?
+    def match(path : String) : Regex::MatchData?
       @regex.match(path)
     end
   end
 end
-
